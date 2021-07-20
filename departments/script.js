@@ -22,7 +22,7 @@ async function CreateLine(dep) {
 
 	let colunaEdit = document.createElement("td");
 	let btnEdit = document.createElement("button");
-	btnEdit.textContent = Editar;
+	btnEdit.textContent = "Edit";
 	btnEdit.classList.add("btn");
 	btnEdit.classList.add("btn-info");
 	colunaEdit.appendChild(btnEdit);
@@ -30,13 +30,13 @@ async function CreateLine(dep) {
 
 	let colunaDelete = document.createElement("td");
 	let btnDelete = document.createElement("button");
-	btnDelete.textContent = "Excluir";
+	btnDelete.textContent = "Delet";
 	btnDelete.classList.add("btn");
 	btnDelete.classList.add("btn-danger");
 	colunaDelete.appendChild(btnDelete);
 	linha.appendChild(colunaDelete);
 
-	const table = document.getElementeById("tableBody");
+	const table = document.getElementById("tableBody");
 	table.appendChild(linha);
 }
 
