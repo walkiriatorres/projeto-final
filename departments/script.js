@@ -7,7 +7,7 @@ async function getData(){
 }
 
 async function createData(nome) {
-	fetch("https://professor-allocation-walkiria.herokuapp.com/departments/", {
+	fetch("https://professor-allocation-walkiria.herokuapp.com/departments", {
     method: "POST",
     body: JSON.stringify({name: nome }),
     headers: { "Content-Type": "application/json" },
