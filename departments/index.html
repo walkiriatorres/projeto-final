@@ -16,7 +16,7 @@
     <title>[RE]CODEV 5</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="../">Professor Allocation</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,7 +45,7 @@
 </nav>
 <main class="container">
     <h1>DEPARTMENTS</h1>
-    <button id="btnAdd" type="button" class="btn btn-success">Add Department</button>
+    <button id="btnAdd" type="button" class="btn btn-success" data-toggle="modal" data-target="#modalCreate">Add Department</button>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -54,11 +54,66 @@
           <th scope="col">Excluir</th>
         </tr>
       </thead>
-      <tbody id="tableBody">
-        
-      </tbody>
+      <tbody id="tableBody"></tbody>
     </table>
 </main>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="modalCreate"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modalCreate"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalCreateTitle">Criar Departamento</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Fechar"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nome Departamento</label>
+            <input
+              type="text"
+              class="form-control"
+              id="txtName"
+              aria-describedby="emailHelp"
+              placeholder="Nome do Departamento"
+            >            
+          </div>
+        </form>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+        >Fechar</button>
+        <button
+          type="button"
+          class="btn btn-primary"
+        >Salvar mudanças</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
     <!-- Optional JavaScript; choose one of the two! -->
 

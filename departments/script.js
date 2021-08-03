@@ -5,15 +5,32 @@ async function getData(){
 	const json = await response.json();
 	return json;
 }
+
+async function createData(name) {
+	fetch("https://professor-allocation-walkiria.herokuapp.com/departments", {
+    method: "POST",
+    body: JSON.stringify({ name }),
+    headers: { "Content-Type": "application/json" },
+  }).then((response) => {
+    if (!response.ok) {
+      console.log("houve um erro");
+    }
+
+    response.json().then((json) => {
+      createLine(json);
+    });
+  });
+}
+
 async function loadTable(){
 	const data = await getData();
 	
 	for (const department of data){
-		CreateLine(department);
+		createLine(department);
 	}
 }
 
-async function CreateLine(dep) {
+async function createLine(dep) {
 	let linha = document.createElement("tr");
 
 	let colunaNome = document.createElement("td");
@@ -41,3 +58,21 @@ async function CreateLine(dep) {
 }
 
 loadTable();
+
+function createDepartment() {
+	const name = document.getElementById("txtName").value;
+
+	if (!name){
+		alert("O nome do departamento é obrigatório!");
+	}
+
+	createData(name);
+}
+
+const saveDepartment = document.getElementById("btnModalCreate");
+saveDepartment.addEventListener('click', createDepartment);
+
+const btnAdd = document.getElementById("btnAdd");
+btnAdd.addEventListener('click', () => {
+	document.getElementById("txtName").value = "";
+});
