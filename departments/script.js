@@ -69,10 +69,10 @@ function createDepartment() {
 	createData(name);
 }
 
-const saveDepartment = document.getElementById("btnModalCreate");
-saveDepartment.addEventListener('click', createDepartment);
+const confirmSave = document.getElementById("btnModalCreate");
+confirmSave.addEventListener("click", createDepartment);
 
 const btnAdd = document.getElementById("btnAdd");
-btnAdd.addEventListener('click', () => {
+btnAdd.addEventListener("click", () => {
 	document.getElementById("txtName").value = "";
 });
