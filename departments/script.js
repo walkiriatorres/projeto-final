@@ -7,7 +7,7 @@ async function getData(){
 }
 
 async function createData(nome) {
-	fetch("https://professor-allocation-walkiria.herokuapp.com/departments", {
+	fetch("https://professor-allocation-walkiria.herokuapp.com/departments/", {
     method: "POST",
     body: JSON.stringify({name: nome }),
     headers: { "Content-Type": "application/json" },
@@ -60,13 +60,13 @@ async function createLine(dep) {
 loadTable();
 
 function createDepartment() {
-	const nome = document.getElementById("txtName").value;
+	const name = document.getElementById("txtName").value;
 
-	if (!nome){
+	if (!name){
 		alert("O nome do departamento é obrigatório!");
 	}
 
-	createData(nome);
+	createData(name);
 }
 
 const confirmSave = document.getElementById("btnModalCreate");
