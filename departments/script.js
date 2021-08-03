@@ -60,7 +60,7 @@ async function createLine(dep) {
 loadTable();
 
 function createDepartment() {
-	const nam = document.getElementById("txtName").value;
+	const name = document.getElementById("txtName").value;
 
 	if (!name){
 		alert("O nome do departamento é obrigatório!");
