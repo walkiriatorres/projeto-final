@@ -6,10 +6,10 @@ async function getData(){
 	return json;
 }
 
-async function createData(name) {
-	fetch("https://professor-allocation-walkiria.herokuapp.com/departments/", {
+async function createData(nome) {
+	fetch("https://professor-allocation-walkiria.herokuapp.com/departments", {
     method: "POST",
-    body: JSON.stringify({ name }),
+    body: JSON.stringify({name: nome }),
     headers: { "Content-Type": "application/json" },
   }).then((response) => {
     if (!response.ok) {
