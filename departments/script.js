@@ -60,13 +60,13 @@ async function createLine(dep) {
 loadTable();
 
 function createDepartment() {
-	const department = document.getElementById("txtName").value;
+	const name = document.getElementById("txtName").value;
 
-	if (!department){
+	if (!name){
 		alert("O nome do departamento é obrigatório!");
 	}
 
-	createData(department);
+	createData(name);
 }
 
 const confirmSave = document.getElementById("btnModalCreate");
