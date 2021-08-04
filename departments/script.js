@@ -1,7 +1,7 @@
 //fazendo um fetch dos dados passando nossa rota com await
 
 async function getData(){
-	const response = await fetch("https://professor-allocation-walkiria.herokuapp.com/departments");
+	const response = await fetch("https://professor-allocation-walkiria.herokuapp.com/departments/");
 	const json = await response.json();
 	return json;
 }
