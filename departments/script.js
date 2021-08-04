@@ -13,7 +13,7 @@ async function createData(name) {
     headers: { "Content-Type": "application/json" },
   }).then((response) => {
     if (!response.ok) {
-      console.log("houve um erro");
+      console.log("Error!");
     }
 
     response.json().then((json) => {
@@ -47,7 +47,7 @@ async function createLine(dep) {
 
 	let colunaDelete = document.createElement("td");
 	let btnDelete = document.createElement("button");
-	btnDelete.textContent = "Delet";
+	btnDelete.textContent = "Delete";
 	btnDelete.classList.add("btn");
 	btnDelete.classList.add("btn-danger");
 	colunaDelete.appendChild(btnDelete);
@@ -60,13 +60,13 @@ async function createLine(dep) {
 loadTable();
 
 function createDepartment() {
-	const name = document.getElementById("txtName").value;
+	const department = document.getElementById("txtName").value;
 
-	if (!name){
-		alert("O nome do departamento é obrigatório!");
+	if (!department){
+		alert("The department name is required!");
 	}
 
-	createData(name);
+	createData(department);
 }
 
 const confirmSave = document.getElementById("btnModalCreate");
