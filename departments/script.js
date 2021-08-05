@@ -1,13 +1,15 @@
 //fazendo um fetch dos dados passando nossa rota com await
+let actualId = undefined;
+baseURL = "https://professor-allocation-walkiria.herokuapp.com/departments/";
 
 async function getData(){
-	const response = await fetch("https://professor-allocation-walkiria.herokuapp.com/departments");
+	const response = await fetch(baseURL);
 	const json = await response.json();
 	return json;
 }
 
 async function createData(name) {
-	fetch("https://professor-allocation-walkiria.herokuapp.com/departments/", {
+	fetch(baseURL, {
     method: "POST",
     body: JSON.stringify({name}),
     headers: { "Content-Type": "application/json" },
@@ -17,9 +19,33 @@ async function createData(name) {
     }
 
     response.json().then((json) => {
-      createLine(json);
+     createLine(json);
     });
   });
+}
+
+async function updateData(id, name) {
+	fetch(baseURL + id, {
+	    method: "PUT",
+	    body: JSON.stringify({ name: name }),
+	    headers: { "Content-Type": "application/json" },
+  	}).then((response) => {
+   		if (!response.ok) {
+     		 console.log("Error!");
+    	}
+
+   		response.json().then((json) => {
+   		 refreshTable();
+     		
+    	});
+ 	});
+}
+
+async function refreshTable() {
+	const table = document.getElementById("tableBody");
+	table.innerHTML = '';
+
+	loadTable();
 }
 
 async function loadTable(){
@@ -42,6 +68,9 @@ async function createLine(dep) {
 	btnEdit.textContent = "Edit";
 	btnEdit.classList.add("btn");
 	btnEdit.classList.add("btn-info");
+
+	btnEdit.addEventListener("click", () => updateDepartment(dep));
+
 	colunaEdit.appendChild(btnEdit);
 	linha.appendChild(colunaEdit);
 
@@ -59,14 +88,31 @@ async function createLine(dep) {
 
 loadTable();
 
-function createDepartment() {
+function updateDepartment(dep){
+	const title = document.getElementById("modalCreateTitle");
+	title.textContent = "Update Department";
+
 	const department = document.getElementById("txtName").value;
+	actualId = dep.id;
+
+	var myModal = new bootstrap.Modal(document.getElementById('modalCreate'))
+	myModal.show();
+}
+
+
+
+function createDepartment() {
+	const department = document.getElementById("txtName").value;	
 
 	if (!department){
 		alert("The department name is required!");
 	}
 
-	createData(department);
+	if (!actualId) {
+		createData(department);
+	} else {
+		updateData(actualId, department);
+	}
 }
 
 const confirmSave = document.getElementById("btnModalCreate");
@@ -75,6 +121,12 @@ confirmSave.addEventListener("click", createDepartment);
 const btnAdd = document.getElementById("btnAdd");
 btnAdd.addEventListener("click", () => {
 	document.getElementById("txtName").value = "";
+	
+	const title = document.getElementById("modalCreateTitle");
+	title.textContent = "Create Department";
+	actualId = undefined;
+
+
 });
 
 console.log(btnAdd);
