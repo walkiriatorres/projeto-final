@@ -35,13 +35,22 @@ async function updateData(id, name) {
     	}
 
    		response.json().then((json) => {
-   		 refreshTable();
-     		
+   		 refreshTable();     		
     	});
  	});
 }
 
-async function deleteData() {}
+async function deleteData() {
+	fetch(baseURL + actualId, {
+    method: "DELETE",
+  }).then((response) => {
+    if (!response.ok) {
+      console.log("houve um erro");
+    }
+   
+    refreshTable();
+  });
+}
 
 async function refreshTable() {
 	const table = document.getElementById("tableBody");
@@ -130,6 +139,9 @@ function deleteDepartment(dep) {
 
 const confirmSave = document.getElementById("btnModalCreate");
 confirmSave.addEventListener("click", createDepartment);
+
+const confirmDelete = document.getElementById("btnModalDelete");
+confirmDelete.addEventListener("click", deleteData);
 
 const btnAdd = document.getElementById("btnAdd");
 btnAdd.addEventListener("click", () => {
