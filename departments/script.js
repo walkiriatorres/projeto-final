@@ -41,6 +41,8 @@ async function updateData(id, name) {
  	});
 }
 
+async function deleteData() {}
+
 async function refreshTable() {
 	const table = document.getElementById("tableBody");
 	table.innerHTML = '';
@@ -79,6 +81,9 @@ async function createLine(dep) {
 	btnDelete.textContent = "Delete";
 	btnDelete.classList.add("btn");
 	btnDelete.classList.add("btn-danger");
+
+	btnDelete.addEventListener("click", () => deleteDepartment(dep));
+
 	colunaDelete.appendChild(btnDelete);
 	linha.appendChild(colunaDelete);
 
@@ -87,19 +92,6 @@ async function createLine(dep) {
 }
 
 loadTable();
-
-function updateDepartment(dep){
-	const title = document.getElementById("modalCreateTitle");
-	title.textContent = "Update Department";
-
-	const department = document.getElementById("txtName").value;
-	actualId = dep.id;
-
-	var myModal = new bootstrap.Modal(document.getElementById('modalCreate'))
-	myModal.show();
-}
-
-
 
 function createDepartment() {
 	const department = document.getElementById("txtName").value;	
@@ -115,6 +107,27 @@ function createDepartment() {
 	}
 }
 
+function updateDepartment(dep){
+	const title = document.getElementById("modalCreateTitle");
+	title.textContent = "Update Department";
+
+	const department = document.getElementById("txtName").value;
+	actualId = dep.id;
+
+	var myModal = new bootstrap.Modal(document.getElementById('modalCreate'))
+	myModal.show();
+}
+
+function deleteDepartment(dep) {
+	actualId = dep.id;	
+
+	const txtDepartment = document.getElementById('txtDeleteDepartment');
+	txtDepartment.textContent = dep.name;
+
+	var myModal = new bootstrap.Modal(document.getElementById('modalDelete'))
+	myModal.show();
+}
+
 const confirmSave = document.getElementById("btnModalCreate");
 confirmSave.addEventListener("click", createDepartment);
 
@@ -125,8 +138,6 @@ btnAdd.addEventListener("click", () => {
 	const title = document.getElementById("modalCreateTitle");
 	title.textContent = "Create Department";
 	actualId = undefined;
-
-
 });
 
 console.log(btnAdd);
