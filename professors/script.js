@@ -1,148 +1,185 @@
-// rota caminho atual
-const route = "/professors/";
+//caminho do recurso:
+const route = "/professors/"
+let departments = [];
 
-// verificar o id do elemento atual
+//id começando como undefined para efetuar verificação
 let actualId = undefined;
-
-// instanciar a tabela
+//Instanciando a tabela
 const table = document.getElementById("tableBody");
+//Método que cria uma linha na tabela:
+async function createLine(professor) {
+	let linha = document.createElement("tr");
 
-// método responsável por criar uma linha na tabela
-async function createLine(dep) {
-  let linha = document.createElement("tr");
+	let colunaNome = document.createElement("td");
+	colunaNome.textContent = professor.name;
+	linha.appendChild(colunaNome);
 
-  let colunaNome = document.createElement("td");
-  colunaNome.textContent = dep.name;
-  linha.appendChild(colunaNome);
+	let colunaCPF = document.createElement("td");
+	colunaCPF.textContent = professor.cpf;
+	linha.appendChild(colunaCPF);
 
-  let colunaEdit = document.createElement("td");
-  let btnEdit = document.createElement("button");
-  btnEdit.textContent = "Editar";
-  btnEdit.classList.add("btn");
-  btnEdit.classList.add("btn-info");
+	let colunaDepartment = document.createElement("td");
+	colunaDepartment.textContent = professor.department.name;
+	linha.appendChild(colunaDepartment);
 
-  btnEdit.addEventListener("click", () => btnUpdate_click(dep));
+	let colunaEdit = document.createElement("td");
+	let btnEdit = document.createElement("button");
+	btnEdit.textContent = "Edit";
+	btnEdit.classList.add("btn");
+	btnEdit.classList.add("btn-info");
 
-  colunaEdit.appendChild(btnEdit);
-  linha.appendChild(colunaEdit);
+	btnEdit.addEventListener("click", () => btnUpdate_click(professor));
 
-  let colunaDelete = document.createElement("td");
-  let btnDelete = document.createElement("button");
-  btnDelete.textContent = "Excluir";
-  btnDelete.classList.add("btn");
-  btnDelete.classList.add("btn-danger");
+	colunaEdit.appendChild(btnEdit);
+	linha.appendChild(colunaEdit);
 
-  btnDelete.addEventListener("click", () => btnDelete_click(dep));
+	let colunaDelete = document.createElement("td");
+	let btnDelete = document.createElement("button");
+	btnDelete.textContent = "Delete";
+	btnDelete.classList.add("btn");
+	btnDelete.classList.add("btn-danger");
 
-  colunaDelete.appendChild(btnDelete);
-  linha.appendChild(colunaDelete);
+	btnDelete.addEventListener("click", () => btnDelete_click(professor));
 
-  table.appendChild(linha);
+	colunaDelete.appendChild(btnDelete);
+	linha.appendChild(colunaDelete);
+
+	table.appendChild(linha);
 }
-
-// método responsável por recarregar a tabela
+//Método que recarrega a tabela, ele limpa a tabela e depois a carrega:
 async function refreshTable() {
-  // o InnerHTML é contém todos os elementos internos do elemento
-  // em questão, no nosso caso, estamos limpando tudo que há nele
-  table.innerHTML = "";
+	table.innerHTML = '';
 
-  loadTable();
+	loadTable();
 }
-
-// método responsável por carregar a tabela
-async function loadTable() {
-  const listData = await list(route);
-
-  for (const item of listData) {
-    createLine(item);
-  }
+//Método que carrega a tabela:
+async function loadTable(){
+	let meusDados = await getData(route);
+	
+	for (let item of meusDados){
+		createLine(item);
+	}
 }
-
-// evento disparado quando aperta em adicionar novo elemento
+//Evento disparado quando aperta em Adicionar novo Elemento:
 function btnAdd_click() {
-  document.getElementById("txtName").value = "";
-  const title = document.getElementById("mdCreateTitle");
-  title.textContent = "Criar departamento";
-  actualId = undefined;
+	
+	document.getElementById("txtName").value = "";
+	document.getElementById("txtCPF").value = "";
+	document.getElementById("selectDepartmentId").value = "selected";	
+	const title = document.getElementById("modalCreateTitle");
+	title.textContent = "Create Professor";
+	actualId = undefined;
 }
+//Evento disparado quando aperta em Editar Elemento:
+function btnUpdate_click(professor){
+	const title = document.getElementById("modalCreateTitle");
+	title.textContent = "Update Professor";
 
-// evento disparado quando aperta em editar um elemento
-function btnUpdate_click(dep) {
-  const title = document.getElementById("mdCreateTitle");
-  title.textContent = "Atualizar departamento";
+	document.getElementById("txtName").value = professor.name;
+	document.getElementById("txtCPF").value = professor.cpf;
+	document.getElementById("selectDepartmentId").value = professor.department.id;
 
-  document.getElementById("txtName").value = dep.name;
-  actualId = dep.id;
-  $("#modalCreate").modal();
+	actualId = professor.id;
+
+	var myModal = new bootstrap.Modal(document.getElementById('modalCreate'))
+	myModal.show();
 }
+//Evento disparado quando aperta em Deletar Elemento:
+function btnDelete_click(professor) {
+	const txtProfessor = document.getElementById("txtDeleteProfessor");
+	txtProfessor.textContent = professor.name;
 
-// evento disparado quando aperta em remover um elemento
-function btnDelete_click(dep) {
-  actualId = dep.id;
+	actualId = professor.id;
 
-  const txtDepartamento = document.getElementById("txtRemoveName");
-  txtDepartamento.textContent = dep.name;
-
-  $("#modalDelete").modal();
+	var myModalDelete = new bootstrap.Modal(document.getElementById('modalDelete'));
+	myModalDelete.show();
 }
+//Evento disparado ao confirmar criação de um novo recurso:
+async function applyAddProfessor(){
+	const name = document.getElementById("txtName").value;
+	const cpf = document.getElementById("txtCPF").value;
+	const idDepartment = document.getElementById("selectDepartmentId").value;
 
-// evento disparado ao confirmar a criação do novo elemento
-async function applyAddDepartament() {
-  const name = document.getElementById("txtName").value;
-  let result;
-  if (!name) {
-    alert("O nome é obrigatório!");
-    return;
-  }
+	//Selecionando um departamento
+	let result;
 
-  if (!actualId) {
-    result = await create(route, { name });
-  } else {
-    result = await update(route + actualId, { name });
-  }
+	if (!name || !cpf || !idDepartment || idDepartment === ""){
+		alert("Fill in the required fields!");
+		return;
+	}
 
-  if (result) {
-    refreshTable();
-  }
+	const data = {
+		name,
+		cpf,
+		department: {
+			id: idDepartment
+		}
+	}
+
+	if (!actualId) {
+		result = await create(route, {name, cpf});
+	} else {
+		result = await update(route + actualId, {name, cpf});
+	}
+	if(result) {
+		refreshTable();
+	}
 }
+//Evento disparado ao confirmar remoção de um novo recurso:
+async function applyDeleteProfessor(){
+	const result = await deleteData(route + actualId);
 
-// evento disparado ao confirmar a remoção do elemento
-async function applyRemoveDepartament() {
-  const result = await deleteData(route + actualId);
-
-  if (result) {
-    refreshTable();
-  }
+	if (result) {
+		refreshTable();
+	}
 }
-
-// pegando o botao de adicionar e informando seu evento
+//Pegando o botão adicionar e informando o seu evento:
 const btnAdd = document.getElementById("btnAdd");
 btnAdd.addEventListener("click", btnAdd_click);
 
-// pegando o botao de confirmar a adicao e informando seu evento
+//Pegando o botão confirmar a adição e informando o seu evento:
 const confirmSave = document.getElementById("btnModalCreate");
-confirmSave.addEventListener("click", applyAddDepartament);
+confirmSave.addEventListener("click", applyAddProfessor);
 
-// pegando o botao de confirmar a remocao e informando seu evento
+//Pegando o botão confirmar a remoção e informando o seu evento:
 const confirmDelete = document.getElementById("btnModalDelete");
-confirmDelete.addEventListener("click", applyRemoveDepartament);
+confirmDelete.addEventListener("click", applyDeleteProfessor);
 
-// chamando o método de carregar a tabela para exibir na tela
+//método que carrega a lista de departmantos:
+async function loadSelectDepartmentId() {
+	const routeDepartment = "/departments/";
+	departaments = await getData(routeDepartment);
+
+	const selectDepartments = document.getElementById("selectDepartmentId");
+
+	for (let item of departaments) {
+		const opcao = document.createElement("option");
+		opcao.value = item.id;
+		opcao.textContent = item.name;
+
+		selectDepartments.appendChild(opcao);
+	}
+}
+
+loadSelectDepartmentId();
+
+//chamando o método de carregar a tabela para exibir na tela
 loadTable();
 
 
-
-
-
+/*
+async function getData(route) {	
+	const response = await fetch(baseURL + route);
+	return await response.json();
+}
+/*
+/*
+baseURL = "https://professor-allocation-walkiria.herokuapp.com";
+*/
 /*
 
-
-
-
-
-
-let actualId = undefined;
 baseURL = "https://professor-allocation-walkiria.herokuapp.com/professors/";
+
 
 async function getData(){
 	const response = await fetch(baseURL);
@@ -193,106 +230,4 @@ async function deleteData() {
     refreshTable();
   });
 }
-
-async function refreshTable() {
-	const table = document.getElementById("tableBody");
-	table.innerHTML = '';
-
-	loadTable();
-}
-
-async function loadTable(){
-	const data = await getData();
-	
-	for (const item of data){
-		createLine(item);
-	}
-}
-
-async function createLine(dep) {
-	let linha = document.createElement("tr");
-
-	let colunaNome = document.createElement("td");
-	colunaNome.textContent = dep.name;
-	linha.appendChild(colunaNome);
-
-	let colunaEdit = document.createElement("td");
-	let btnEdit = document.createElement("button");
-	btnEdit.textContent = "Edit";
-	btnEdit.classList.add("btn");
-	btnEdit.classList.add("btn-info");
-
-	btnEdit.addEventListener("click", () => updateDepartment(dep));
-
-	colunaEdit.appendChild(btnEdit);
-	linha.appendChild(colunaEdit);
-
-	let colunaDelete = document.createElement("td");
-	let btnDelete = document.createElement("button");
-	btnDelete.textContent = "Delete";
-	btnDelete.classList.add("btn");
-	btnDelete.classList.add("btn-danger");
-
-	btnDelete.addEventListener("click", () => deleteDepartment(dep));
-
-	colunaDelete.appendChild(btnDelete);
-	linha.appendChild(colunaDelete);
-
-	const table = document.getElementById("tableBody");
-	table.appendChild(linha);
-}
-
-loadTable();
-
-function createDepartment() {
-	const department = document.getElementById("txtName").value;	
-
-	if (!department){
-		alert("The department name is required!");
-	}
-
-	if (!actualId) {
-		createData(department);
-	} else {
-		updateData(actualId, department);
-	}
-}
-
-function updateDepartment(dep){
-	const title = document.getElementById("modalCreateTitle");
-	title.textContent = "Update Department";
-
-	const department = document.getElementById("txtName").value;
-	actualId = dep.id;
-
-	var myModal = new bootstrap.Modal(document.getElementById('modalCreate'))
-	myModal.show();
-}
-
-function deleteDepartment(dep) {
-	actualId = dep.id;	
-
-	const txtDepartment = document.getElementById('txtDeleteDepartment');
-	txtDepartment.textContent = dep.name;
-
-	var myModal = new bootstrap.Modal(document.getElementById('modalDelete'))
-	myModal.show();
-}
-
-const confirmSave = document.getElementById("btnModalCreate");
-confirmSave.addEventListener("click", createDepartment);
-
-const confirmDelete = document.getElementById("btnModalDelete");
-confirmDelete.addEventListener("click", deleteData);
-
-const btnAdd = document.getElementById("btnAdd");
-btnAdd.addEventListener("click", () => {
-	document.getElementById("txtName").value = "";
-	
-	const title = document.getElementById("modalCreateTitle");
-	title.textContent = "Create Department";
-	actualId = undefined;
-});
-
-console.log(btnAdd);
-
+*/
