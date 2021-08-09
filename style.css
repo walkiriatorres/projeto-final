@@ -1,6 +1,7 @@
 body{
   margin:  0;
   padding: 0;
+  background-color: #d1c9c9;
 }
 
 .principal{
@@ -13,6 +14,9 @@ color: #0a0a0aB6;
 background-color: #d1c9c9;
 color: #595757;
 width: 100vh;
+height: 90vh;
+
+margin: 0 20px;
 }
 .section-tela4 {
   display: flex;
