@@ -119,7 +119,9 @@ function updateCourse(cour){
 	const title = document.getElementById("modalCreateTitle");
 	title.textContent = "Update Course";
 
-	const course = document.getElementById("txtName").value;
+	/* const course = document.getElementById("txtName").value;*/
+
+	document.getElementById("txtName").value = cour.name;
 	actualId = cour.id;
 
 	var myModal = new bootstrap.Modal(document.getElementById('modalCreate'))

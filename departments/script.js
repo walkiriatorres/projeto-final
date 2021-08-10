@@ -120,7 +120,9 @@ function updateDepartment(dep){
 	const title = document.getElementById("modalCreateTitle");
 	title.textContent = "Update Department";
 
-	const department = document.getElementById("txtName").value;
+	/*const department = document.getElementById("txtName").value; */
+
+	document.getElementById("txtName").value = dep.name;
 	actualId = dep.id;
 
 	var myModal = new bootstrap.Modal(document.getElementById('modalCreate'))
