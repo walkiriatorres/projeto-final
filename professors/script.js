@@ -117,9 +117,9 @@ async function applyAddProfessor(){
 	}
 
 	if (!actualId) {
-		result = await create(route, {name, cpf});
+		result = await create(route, data);
 	} else {
-		result = await update(route + actualId, {name, cpf});
+		result = await update(route + actualId, data);
 	}
 	if(result) {
 		refreshTable();
