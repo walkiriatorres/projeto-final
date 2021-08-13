@@ -156,22 +156,39 @@ const confirmDelete = document.getElementById("btnModalDelete");
 confirmDelete.addEventListener("click", applyDeleteAllocation);
 
 //método que carrega a lista de departmantos:
-async function loadSelectDepartmentId() {
-	const routeDepartment = "/departments/";
-	departaments = await getData(routeDepartment);
+async function loadSelectProfessorId() {
+	const routeProfessor = "/professors/";
+	professors = await getData(routeProfessor);
 
-	const selectDepartments = document.getElementById("selectDepartmentId");
+	const selectProfessors = document.getElementById("selectProfessorId");
 
-	for (let item of departaments) {
+	for (let item of professors) {
 		const opcao = document.createElement("option");
 		opcao.value = item.id;
 		opcao.textContent = item.name;
 
-		selectDepartments.appendChild(opcao);
+		selectProfessors.appendChild(opcao);
 	}
 }
 
-loadSelectDepartmentId();
+loadSelectProfessorId();
+
+async function loadSelectCourseId() {
+	const routeCourse = "/courses/";
+	courses = await getData(routeCourse);
+
+	const selectCourses = document.getElementById("selectCourseId");
+
+	for (let item of courses) {
+		const opcao = document.createElement("option");
+		opcao.value = item.id;
+		opcao.textContent = item.name;
+
+		selectCourses.appendChild(opcao);
+	}
+}
+
+loadSelectCourseId();
 
 //chamando o método de carregar a tabela para exibir na tela
 loadTable();
