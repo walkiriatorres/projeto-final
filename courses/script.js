@@ -106,6 +106,7 @@ function createCourse() {
 
 	if (!course){
 		alert("The course name is required!");
+		return;
 	}
 
 	if (!actualId) {
