@@ -91,7 +91,7 @@ function btnUpdate_click(allocation){
 
 	document.getElementById("selectProfessorId").value = allocation.professor.id;
 	document.getElementById("selectCourseId").value = allocation.course.id;
-	document.getElementById("selectDayOfWeekId").value = allocation.dayofweek.id;
+	document.getElementById("selectDayOfWeekId").value = allocation.dayOfWeek.id;
 	document.getElementById("selectStartHourId").value = allocation.start.id;
 	document.getElementById("selectEndHourId").value = allocation.end.id;
 
