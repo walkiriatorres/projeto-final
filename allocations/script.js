@@ -1,6 +1,8 @@
 //caminho do recurso:
 const route = "/allocations/"
 let departments = [];
+let days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY' ];
+let hours = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'];
 
 //id começando como undefined para efetuar verificação
 let actualId = undefined;
@@ -189,6 +191,36 @@ async function loadSelectCourseId() {
 }
 
 loadSelectCourseId();
+
+async function loadSelectDayHour() {
+	
+	const selectDayOfWeek = document.getElementById("selectDayOfWeekId");
+	const selectStartHour = document.getElementById("selectStartHourId");
+	const selectEndHour = document.getElementById("selectEndHourId");
+
+	for (let item of days) {
+		const opcao = document.createElement("option");
+		opcao.value = item;
+		opcao.textContent = item;
+
+		selectDayOfWeek.appendChild(opcao);
+	}
+	
+	for (let item of hours) {
+		let optionStart = document.createElement("option");		
+		optionStart.value = item;
+		optionStart.textContent = item;
+		selectStartHour.appendChild(optionStart);
+
+		let optionEnd = document.createElement("option");
+		optionEnd.value = item;
+		optionEnd.textContent = item;		
+		selectEndHour.appendChild(optionEnd);
+	}
+}
+
+
+loadSelectDayHour();
 
 //chamando o método de carregar a tabela para exibir na tela
 loadTable();
