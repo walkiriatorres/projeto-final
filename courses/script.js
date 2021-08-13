@@ -14,7 +14,7 @@ async function createData(name) {
     headers: { "Content-Type": "application/json" },
   }).then((response) => {
     if (!response.ok) {
-      console.log("Error!");
+      alert("houve um erro");
     }
 
     response.json().then((json) => {
@@ -30,7 +30,7 @@ async function updateData(id, name) {
 	    headers: { "Content-Type": "application/json" },
   	}).then((response) => {
    		if (!response.ok) {
-     		 console.log("Error!");
+     		 alert("houve um erro");
     	}
 
    		response.json().then((json) => {
@@ -44,7 +44,7 @@ async function deleteData() {
     method: "DELETE",
   }).then((response) => {
     if (!response.ok) {
-      console.log("houve um erro");
+      alert("houve um erro");
     }
    
     refreshTable();
