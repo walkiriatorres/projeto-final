@@ -28,7 +28,7 @@ async function createLine(allocation) {
 	colunaDayOfWeek.textContent = allocation.dayofweek;
 	linha.appendChild(colunaDayOfWeek);
 
-	const infoHorario = `${allocation.start}:00 - ${allocation.end}:00`;
+	const infoHorario = `${allocation.start} - ${allocation.end}`;
 	let colunaHour = document.createElement("td"); 	
 	colunaHour.textContent = infoHorario;
 	linha.appendChild(colunaHour);
@@ -75,9 +75,11 @@ async function loadTable(){
 //Evento disparado quando aperta em Adicionar novo Elemento:
 function btnAdd_click() {
 	
-	document.getElementById("txtName").value = "";
-	document.getElementById("txtCPF").value = "";
-	document.getElementById("selectDepartmentId").value = "selected";	
+	document.getElementById("selectProfessorId").value = "selected";
+	document.getElementById("selectCourseId").value = "selected";
+	document.getElementById("selectDayOfWeekId").value = "selected";
+	document.getElementById("selectStartHourId").value = "selected";
+	document.getElementById("selectEndHourId").value = "selected";	
 	const title = document.getElementById("modalCreateTitle");
 	title.textContent = "Create Allocation";
 	actualId = undefined;
@@ -87,9 +89,11 @@ function btnUpdate_click(allocation){
 	const title = document.getElementById("modalCreateTitle");
 	title.textContent = "Update Allocation";
 
-	document.getElementById("txtName").value = allocation.name;
-	document.getElementById("txtCPF").value = allocation.cpf;
-	document.getElementById("selectDepartmentId").value = allocation.department.id;
+	document.getElementById("selectProfessorId").value = allocation.professor.id;
+	document.getElementById("selectCourseId").value = allocation.course.id;
+	document.getElementById("selectDayOfWeekId").value = allocation.dayofweek.id;
+	document.getElementById("selectStartHourId").value = allocation.start.id;
+	document.getElementById("selectEndHourId").value = allocation.end.id;
 
 	actualId = allocation.id;
 
