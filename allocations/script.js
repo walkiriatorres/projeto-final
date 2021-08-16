@@ -60,7 +60,7 @@ async function createLine(allocation) {
 }
 //Método que recarrega a tabela, ele limpa a tabela e depois a carrega:
 async function refreshTable() {
-	table.innerHTML = '';
+	table.innerHTML = "";
 
 	loadTable();
 }
