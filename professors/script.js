@@ -91,8 +91,8 @@ function btnDelete_click(professor) {
 
 	actualId = professor.id;
 
-	var myModalDelete = new bootstrap.Modal(document.getElementById('modalDelete'));
-	myModalDelete.show();
+	var myModal = new bootstrap.Modal(document.getElementById('modalDelete'));
+	myModal.show();
 }
 //Evento disparado ao confirmar criação de um novo recurso:
 async function applyAddProfessor(){
