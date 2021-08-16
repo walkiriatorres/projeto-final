@@ -151,7 +151,6 @@ btnAdd.addEventListener("click", () => {
 	
 	const title = document.getElementById("modalCreateTitle");
 	title.textContent = "Create Department";
-
 	actualId = undefined;
 });
 
