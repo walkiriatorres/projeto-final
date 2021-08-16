@@ -16,7 +16,7 @@ async function create(route, data) {
   });
 
   if (!response.ok) {
-    alert("houve um erro");
+    alert("houve um erro em create");
     return false;
   }
 
@@ -32,7 +32,7 @@ async function update(route, data) {
   });
 
   if (!response.ok) {
-    alert("houve um erro");
+    alert("houve um erro em update");
     return false;
   }
 
