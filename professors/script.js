@@ -81,7 +81,7 @@ function btnUpdate_click(professor){
 
 	actualId = professor.id;
 
-	var myModal = new bootstrap.Modal(document.getElementById('modalCreate'))
+	var myModal = new bootstrap.Modal(document.getElementById('modalCreate'));
 	myModal.show();
 }
 //Evento disparado quando aperta em Deletar Elemento:

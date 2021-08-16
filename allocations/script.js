@@ -112,24 +112,35 @@ function btnDelete_click(allocation) {
 }
 //Evento disparado ao confirmar criação de um novo recurso:
 async function applyAddAllocation(){
-	const name = document.getElementById("txtName").value;
-	const cpf = document.getElementById("txtCPF").value;
-	const idDepartment = document.getElementById("selectDepartmentId").value;
+	const professorId = document.getElementById("selectProfessorId").value;
+	const courseId = document.getElementById("selectCourseId").value;
+	const dayOfWeek = document.getElementById("selectDayOfWeekId").value;
+	const startHour = document.getElementById("selectStartHourId").value;
+	const endHour = document.getElementById("selectEndHourId").value;
 
 	//Selecionando um departamento
 	let result;
 
-	if (!name || !cpf || !idDepartment || idDepartment === "selected"){
+	if (professorId === "selected"
+		|| courseId === "selected"
+		|| dayOfWeek === "selected"
+		|| startHour === "selected"
+		|| endHour === "selected") {
 		alert("Fill in the required fields!");
 		return;
 	}
 
 	const data = {
-		name,
-		cpf,
-		department: {
-			id: idDepartment
-		}
+		course: {
+			id: courseId
+		},
+		dayofweek: dayOfWeek,
+		end: endHour,
+		professor: {
+			id: professorId
+		},
+		start: startHour 
+
 	}
 
 	if (!actualId) {
