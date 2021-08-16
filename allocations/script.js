@@ -97,13 +97,13 @@ function btnUpdate_click(allocation){
 
 	actualId = allocation.id;
 
-	var myModal = new bootstrap.Modal(document.getElementById('modalCreate'))
+	var myModal = new bootstrap.Modal(document.getElementById('modalCreate'));
 	myModal.show();
 }
 //Evento disparado quando aperta em Deletar Elemento:
 function btnDelete_click(allocation) {
 	const txtProfessor = document.getElementById("txtDeleteProfessor");
-	txtProfessor.textContent = allocation.name;
+	txtProfessor.textContent = `${allocation.professor.name} - ${allocation.course.name}`;
 
 	actualId = allocation.id;
 
@@ -161,7 +161,7 @@ confirmSave.addEventListener("click", applyAddAllocation);
 const confirmDelete = document.getElementById("btnModalDelete");
 confirmDelete.addEventListener("click", applyDeleteAllocation);
 
-//método que carrega a lista de departmantos:
+//método que carrega a lista de professores:
 async function loadSelectProfessorId() {
 	const routeProfessor = "/professors/";
 	professors = await getData(routeProfessor);
