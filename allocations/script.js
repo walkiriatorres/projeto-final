@@ -109,8 +109,8 @@ function btnDelete_click(allocation) {
 
 	
 
-	var myModal = new bootstrap.Modal(document.getElementById('modalDelete'))
-	myModal.show();
+	var myModalDelete = new bootstrap.Modal(document.getElementById('modalDelete'))
+	myModalDelete.show();
 }
 //Evento disparado ao confirmar criação de um novo recurso:
 async function applyAddAllocation(){
