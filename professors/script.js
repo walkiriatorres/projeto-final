@@ -86,13 +86,13 @@ function btnUpdate_click(professor){
 }
 //Evento disparado quando aperta em Deletar Elemento:
 function btnDelete_click(professor) {
-	const txtProfessor = document.getElementById("txtDeleteProfessor");
-	txtProfessor.textContent = professor.name;
-
 	actualId = professor.id;
 
-	var myModal = new bootstrap.Modal(document.getElementById('modalDelete'));
-	myModal.show();
+	const txtProfessor = document.getElementById("txtDeleteProfessor");
+	txtProfessor.textContent = professor.name;	
+
+	var myModalDelete = new bootstrap.Modal(document.getElementById('modalDelete'));
+	myModalDelete.show();
 }
 //Evento disparado ao confirmar criação de um novo recurso:
 async function applyAddProfessor(){
