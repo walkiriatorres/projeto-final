@@ -102,13 +102,15 @@ function btnUpdate_click(allocation){
 }
 //Evento disparado quando aperta em Deletar Elemento:
 function btnDelete_click(allocation) {
+	actualId = allocation.id;
+	
 	const txtProfessor = document.getElementById("txtDeleteProfessor");
 	txtProfessor.textContent = `${allocation.professor.name} - ${allocation.course.name}`;
 
-	actualId = allocation.id;
+	
 
-	var myModalDelete = new bootstrap.Modal(document.getElementById('modalDelete'));
-	myModalDelete.show();
+	var myModal = new bootstrap.Modal(document.getElementById('modalDelete'))
+	myModal.show();
 }
 //Evento disparado ao confirmar criação de um novo recurso:
 async function applyAddAllocation(){
