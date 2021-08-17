@@ -105,18 +105,20 @@ function btnDelete_click(allocation) {
 	actualId = allocation.id;
 	
 	const txtProfessor = document.getElementById("txtDeleteProfessor");
-	txtProfessor.textContent = `${allocation.professor.name} - ${allocation.course.name}`;	
+	txtProfessor.textContent = `${allocation.professor.name} - ${allocation.course.name}`;
+
+	
 
 	var myModalDelete = new bootstrap.Modal(document.getElementById('modalDelete'))
 	myModalDelete.show();
 }
 //Evento disparado ao confirmar criação de um novo recurso:
 async function applyAddAllocation(){
-	const idProfessor = document.getElementById("selectProfessorId").value;
-	const idCurso = document.getElementById("selectCourseId").value;
-	const diaDaSemana = document.getElementById("selectDayOfWeekId").value;
-	const horaInicial = document.getElementById("selectStartHourId").value;
-	const horaFinal = document.getElementById("selectEndHourId").value;
+	const professorId = document.getElementById("selectProfessorId").value;
+	const courseId = document.getElementById("selectCourseId").value;
+	const dayOfWeek = document.getElementById("selectDayOfWeekId").value;
+	const startHour = document.getElementById("selectStartHourId").value;
+	const endHour = document.getElementById("selectEndHourId").value;
 
 	let result;
 
@@ -238,69 +240,3 @@ loadSelectDayHour();
 
 //chamando o método de carregar a tabela para exibir na tela
 loadTable();
-
-
-/*
-async function getData(route) {	
-	const response = await fetch(baseURL + route);
-	return await response.json();
-}
-/*
-/*
-baseURL = "https://professor-allocation-walkiria.herokuapp.com";
-*/
-/*
-
-baseURL = "https://professor-allocation-walkiria.herokuapp.com/professors/";
-
-
-async function getData(){
-	const response = await fetch(baseURL);
-	const json = await response.json();
-	return json;
-}
-
-async function createData(name) {
-	fetch(baseURL, {
-    method: "POST",
-    body: JSON.stringify({name}),
-    headers: { "Content-Type": "application/json" },
-  }).then((response) => {
-    if (!response.ok) {
-      console.log("Error!");
-    }
-
-    response.json().then((json) => {
-     createLine(json);
-    });
-  });
-}
-
-async function updateData(id, name) {
-	fetch(baseURL + id, {
-	    method: "PUT",
-	    body: JSON.stringify({ name: name }),
-	    headers: { "Content-Type": "application/json" },
-  	}).then((response) => {
-   		if (!response.ok) {
-     		 console.log("Error!");
-    	}
-
-   		response.json().then((json) => {
-   		 refreshTable();     		
-    	});
- 	});
-}
-
-async function deleteData() {
-	fetch(baseURL + actualId, {
-    method: "DELETE",
-  }).then((response) => {
-    if (!response.ok) {
-      console.log("houve um erro");
-    }
-   
-    refreshTable();
-  });
-}
-*/
