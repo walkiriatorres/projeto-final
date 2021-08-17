@@ -52,11 +52,12 @@ img{
 }
 
 h1{
-  margin-bottom: 0px;
+  margin-bottom: 20px;
 }
 
 header{ 
-  justify-content: center;
+  text-align: center;
+  width:  1000px;
 }
 a{
   color: #595757;
@@ -65,6 +66,7 @@ a{
 a:hover{
   color: black;
 }
-btnAdd{
-  
+
+flex-wrap{
+  flex-wrap: wrap;
 }
