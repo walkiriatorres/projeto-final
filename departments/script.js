@@ -80,24 +80,24 @@ function btnDelete_click(dep) {
 }
 // evento disparado quando aperta no botão que confirma a criação/atualização do novo elemento
 async function applyAddDepartament() {
-	const department = document.getElementById("txtName").value;
+	const name = document.getElementById("txtName").value;
 
 	let result;
 
-	if (!department){
-		alert("The department name is required!");
-		return;
-	}
+	if (!name) {
+    alert("O nome é obrigatório!");
+    return;
+  	}
 
-	if (!actualId) {
-		createData(department);
-	} else {
-		updateData(actualId, department);
+	if (!actualId && !name) {
+	  result = await create(route, { name });
+	} else if (!name) {
+	  result = await update(route + actualId, { name });
 	}
 
 	if (result) {
-    refreshTable();
-  }
+	  refreshTable();
+	}
 }
 // evento disparado quando aperta no botão que confirma a exclusão do elemento
 async function applyRemoveDepartament() {
