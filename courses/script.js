@@ -90,9 +90,9 @@ async function applyAddCourse() {
     return;
   }
 
-  if (!actualId) {
+  if (!actualId && !name) {
     result = await create(route, { name });
-  } else {
+  } else if (!name) {
     result = await update(route + actualId, { name });
   }
 
