@@ -105,22 +105,19 @@ function btnDelete_click(allocation) {
 	actualId = allocation.id;
 	
 	const txtProfessor = document.getElementById("txtDeleteProfessor");
-	txtProfessor.textContent = `${allocation.professor.name} - ${allocation.course.name}`;
-
-	
+	txtProfessor.textContent = `${allocation.professor.name} - ${allocation.course.name}`;	
 
 	var myModalDelete = new bootstrap.Modal(document.getElementById('modalDelete'))
 	myModalDelete.show();
 }
 //Evento disparado ao confirmar criação de um novo recurso:
 async function applyAddAllocation(){
-	const professorId = document.getElementById("selectProfessorId").value;
-	const courseId = document.getElementById("selectCourseId").value;
-	const dayOfWeek = document.getElementById("selectDayOfWeekId").value;
-	const startHour = document.getElementById("selectStartHourId").value;
-	const endHour = document.getElementById("selectEndHourId").value;
+	const idProfessor = document.getElementById("selectProfessorId").value;
+	const idCurso = document.getElementById("selectCourseId").value;
+	const diaDaSemana = document.getElementById("selectDayOfWeekId").value;
+	const horaInicial = document.getElementById("selectStartHourId").value;
+	const horaFinal = document.getElementById("selectEndHourId").value;
 
-	//Selecionando um departamento
 	let result;
 
 	if (professorId === "selected"
