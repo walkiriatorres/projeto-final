@@ -70,3 +70,6 @@ a:hover{
 flex-wrap{
   flex-wrap: wrap;
 }
+.total{
+  width: 100vh;
+}
