@@ -88,17 +88,17 @@ async function applyAddCourse() {
 	if (!name) {
     alert("O nome é obrigatório!");
     return;
-  }
+  	}
 
-  if (!actualId && !name) {
-    result = await create(route, { name });
-  } else if (!name) {
-    result = await update(route + actualId, { name });
-  }
+	if (!actualId && !name) {
+	  result = await create(route, { name });
+	} else if (!name) {
+	  result = await update(route + actualId, { name });
+	}
 
-  if (result) {
-    refreshTable();
-  }
+	if (result) {
+	  refreshTable();
+	}
 
 }
 // evento disparado quando aperta no botão que confirma a exclusão do elemento
