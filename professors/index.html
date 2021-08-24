@@ -99,15 +99,16 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">            
-              <p>*Required fields</p>
+          <div class="modal-body">           
             <form>
+              <p>*Required field</p>
               <div class="form-group">
                 <label for="txtName">Name*</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="txtName"
+                  id="txtName"                  
+                  maxlength="50"
                   placeholder="Name"
                 >            
               </div>
@@ -117,6 +118,7 @@
                   type="text"
                   class="form-control"
                   id="txtCPF"
+                  maxlength="14"
                   placeholder="CPF"
                 >            
               </div>

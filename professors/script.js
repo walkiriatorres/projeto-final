@@ -103,10 +103,15 @@ async function applyAddProfessor(){
 	//Selecionando um departamento
 	let result;
 
-	if (!name || !cpf || !idDepartment || idDepartment === "selected"){
+	/*if (!name) { alert("Name é obrigatório"); return}
+	if (!cpf) { alert("CPF é obrigatório"); return}
+	if (!idDepartment || idDepartment === "selected") { alert("Department é obrigatório"); return} */
+
+	
+	if (!name || !cpf || !idDepartment || idDepartment === "selected") {
 		alert("Fill in the required fields!");
 		return;
-	}
+	} 
 
 	const data = {
 		name,
@@ -124,6 +129,7 @@ async function applyAddProfessor(){
 	if(result) {
 		refreshTable();
 	}
+	
 }
 //Evento disparado ao confirmar remoção de um novo recurso:
 async function applyDeleteProfessor(){

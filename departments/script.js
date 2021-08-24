@@ -85,7 +85,7 @@ async function applyAddProfessor() {
 
 	if (!name){
 		alert("The department name is required!");
-		return;
+		return;	
 	}
 
 	if (!actualId) {
