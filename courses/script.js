@@ -90,9 +90,9 @@ async function applyAddProfessor() {
 	}
 
 	if (!actualId) {
-		create(route, { name });
+		result = await create(route, { name });
 	} else {
-		update(route + actualId, { name });
+		result = await update(route + actualId, { name });
 	}
 	if(result) {
 		refreshTable();
