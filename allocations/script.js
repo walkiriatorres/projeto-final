@@ -127,7 +127,7 @@ async function applyAddAllocation(){
 		|| dayOfWeek === "selected"
 		|| startHour === "selected"
 		|| endHour === "selected") {
-		alert("Fill in the required fields!");
+		alert("Fill in the required fields teste!");
 		return;
 	}
 	if (startHour == endHour) {
