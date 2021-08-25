@@ -121,15 +121,7 @@ async function applyAddAllocation(){
 	const endHour = document.getElementById("selectEndHourId").value;
 
 	let result;
-
-	if (professorId === "selected"
-		|| courseId === "selected"
-		|| dayOfWeek === "selected"
-		|| startHour === "selected"
-		|| endHour === "selected") {
-		alert("Fill in the required fields teste!");
-		return;
-	}
+	
 	if (startHour === endHour) {
 		startHour === "selected"
 		alert("Não é possível cadastrar aula com horário inicial e final iguais");
@@ -140,6 +132,17 @@ async function applyAddAllocation(){
 		alert("Não foi possível cadastrar aula, horário inicial selecionado foi maior que o horário final.");
 		
 	}
+
+
+	if (professorId === "selected"
+		|| courseId === "selected"
+		|| dayOfWeek === "selected"
+		|| startHour === "selected"
+		|| endHour === "selected") {
+		alert("Fill in the required fields teste!");
+		return;
+	}
+
 
 	const data = {
 		course: {
