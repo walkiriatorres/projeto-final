@@ -130,6 +130,12 @@ async function applyAddAllocation(){
 		alert("Fill in the required fields!");
 		return;
 	}
+	if (startHour == endHour) {
+		alert("Não é possível cadastrar aula com horário inicial e final iguais");
+	}
+	if (startHour > endHour) {
+		alert("Não foi possível cadastrar aula, horário inicial selecionado foi maior que o horário final.");
+	}
 
 	const data = {
 		course: {
