@@ -131,6 +131,7 @@ async function applyAddAllocation(){
 		return;
 	}
 	if (startHour === endHour) {
+		startHour === "selected"
 		alert("Não é possível cadastrar aula com horário inicial e final iguais");
 		return;
 		
