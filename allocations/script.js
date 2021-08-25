@@ -136,7 +136,7 @@ async function applyAddAllocation(){
 	}
 	if (startHour > endHour) {
 		alert("Não foi possível cadastrar aula, horário inicial selecionado foi maior que o horário final.");
-		break;
+		
 	}
 
 	const data = {
