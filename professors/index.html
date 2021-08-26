@@ -105,6 +105,7 @@
                 <label for="txtName">Name*</label>
                 <input
                   type="text"
+
                   class="form-control"
                   id="txtName"                  
                   maxlength="50"
@@ -115,6 +116,7 @@
                 <label for="txtCPF">CPF*</label>
                 <input
                   type="text"
+                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
                   class="form-control"
                   id="txtCPF"
                   maxlength="11"
