@@ -164,7 +164,7 @@ loadSelectDepartmentId();
 loadTable();
 
 function validarCPF(){
-   var cpf = document.getElementById("txtCPF");
+   var cpf = document.getElementById("txtCPF").value;
       
    if(cpf.length != 11 || cpf == "00000000000" || 
       cpf == "11111111111" ||
