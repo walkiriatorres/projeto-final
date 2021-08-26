@@ -55,6 +55,24 @@ function btnAdd_click() {
 	const title = document.getElementById("modalCreateTitle");
 	title.textContent = "Create Course";
 	actualId = undefined;
+
+	document.getElementById("btnModalCreate").disabled = true;
+
+	//cria um event listener que escuta mudanças no input
+	document.getElementById("txtName").addEventListener("input", function(event){
+
+  	//busca conteúdo do input
+    var conteudo = document.getElementById("txtName").value;
+
+    //valida conteudo do input 
+    if (conteudo !== null && conteudo !== '') {
+      //habilita o botão
+      document.getElementById("btnModalCreate").disabled = false;
+    } else {
+      //desabilita o botão se o conteúdo do input ficar em branco
+      document.getElementById("btnModalCreate").disabled = true;
+    }
+});
 }
 function btnUpdate_click(cour) {
 	const title = document.getElementById("modalCreateTitle");
